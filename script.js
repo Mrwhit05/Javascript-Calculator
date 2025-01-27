@@ -1,8 +1,9 @@
 let result = 0;
 let decCount = 0
-let term = 0;
 
+let term = 0;
 let num = [0, 0];
+
 let operator = "";
 let operatorCount = 0;
 
@@ -36,129 +37,14 @@ divsion.onclick = divide;
 multiplication.onclick = multiply;
 subtraction.onclick = subtract;
 addition.onclick = add;
-equals.onclick = equalsFun;
-
 
 clear.onclick = clearFunc;
 posNeg.onclick = posNegFunc;
 percentage.onclick = percentageFunc;
 decimal.onclick = decimalFunc;
 
-one.onclick = oneFun;
-two.onclick = twoFun;
-three.onclick = threeFun;
-four.onclick = fourFun;
-five.onclick = fiveFun;
-six.onclick = sixFun;
-seven.onclick = sevenFun;
-eight.onclick = eightFun;
-nine.onclick = nineFun;
-zero.onclick = zeroFun;
-
-function oneFun() {
-    updateNum("1");
-}
-
-function twoFun() {
-    updateNum("2");
-}
-
-function threeFun() {
-    updateNum("3");
-}
-
-function fourFun() {
-    updateNum("4");
-}
-
-function fiveFun() {
-    updateNum("5");
-}
-
-function sixFun() {
-    updateNum("6");
-}
-
-function sevenFun() {
-    updateNum("7");
-}
-
-function eightFun() {
-    updateNum("8");
-}
-
-function nineFun() {
-    updateNum("9");
-}
-
-function zeroFun() {
-    updateNum("0");
-}
-
-function equalsFun() {
-    equate(operator);
-}
-
 function updateTerm() {
     term += 1;
-    tempNum = "";
-}
-
-function add() {
-    updateTerm();
-    operator = "+";
-    resultText.innerText = "0";
-
-    if (operatorCount > 0) {
-        equate(operator);
-        term = 1;
-    }
-
-    operatorCount += 1;
-}
-
-function subtract() {
-    updateTerm();
-    operator = "-";
-    resultText.innerText = "0";
-    operatorCount += 1;
-}
-
-function multiply() {
-    updateTerm();
-    operator = "*";
-    resultText.innerText = "0";
-    operatorCount += 1;
-}
-
-function divide() {
-    updateTerm();
-    operator = "/";
-    resultText.innerText = "0";
-    operatorCount += 1;
-}
-
-function equate(operator) {
-    if (operator === "+") {
-        result = Number(num[0]) + Number(num[1]);
-        resultText.innerText = result;
-    }
-    else if (operator === "-") {
-        result = Number(num[0]) - Number(num[1]);
-        resultText.innerText = result;
-    }
-    else if (operator === "*") {
-        result = Number(num[0]) * Number(num[1]);
-        resultText.innerText = result;
-    }
-    else if (operator === "/") {
-        result = Number(num[0]) / Number(num[1]);
-        resultText.innerText = result;
-    }
-    //term = 0;
-    num = [result, 0];
-    operatorCount = 0;
-    console.log(num);
     tempNum = "";
 }
 
@@ -166,7 +52,7 @@ function updateNum(digit) {
     tempNum += digit;
     resultText.innerText = tempNum;
     num[term % 2] = tempNum;
-    console.log(num);
+    //console.log(num);
 }
 
 function clearFunc() {
@@ -197,3 +83,93 @@ function decimalFunc() {
     }
     decCount += 1;
 }
+
+
+function add() {
+    updateTerm();
+    resultText.innerText = "0";
+
+    if (operatorCount > 0) {
+        equate(operator);
+        term = 1;
+    }
+
+    operator = "+";
+    operatorCount += 1;
+    //console.log(operator);
+    //console.log(num);
+}
+
+function subtract() {
+    updateTerm();
+    resultText.innerText = "0";
+
+    if (operatorCount > 0) {
+        equate(operator);
+        term = 1;
+    }
+
+    operator = "-";
+    operatorCount += 1;
+    //console.log(operator);
+    //console.log(num);
+}
+
+function multiply() {
+    updateTerm();
+    resultText.innerText = "0";
+
+    if (operatorCount > 0) {
+        equate(operator);
+        term = 1;
+    }
+
+    operator = "*";
+    operatorCount += 1;
+    //console.log(operator);
+    //console.log(num);
+}
+
+function divide() {
+    updateTerm();
+    resultText.innerText = "0";
+
+    if (operatorCount > 0) {
+        equate(operator);
+        term = 1;
+    }
+
+    operator = "/";
+    operatorCount += 1;
+    //console.log(operator);
+    //console.log(num);
+}
+
+function equate(operator) {
+    if (operator === "+") {
+        result = Number(num[0]) + Number(num[1]);
+        resultText.innerText = result;
+    }
+    else if (operator === "-") {
+        result = Number(num[0]) - Number(num[1]);
+        resultText.innerText = result;
+    }
+    else if (operator === "*") {
+        result = Number(num[0]) * Number(num[1]);
+        resultText.innerText = result;
+    }
+    else if (operator === "/") {
+        result = Number(num[0]) / Number(num[1]);
+        resultText.innerText = result;
+    }
+
+    if (operatorCount > 0) {
+        term += 1;
+    }
+
+    num = [result, 0];
+    operatorCount = 0;
+    //console.log(num);
+    tempNum = "";
+}
+
